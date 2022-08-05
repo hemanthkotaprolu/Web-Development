@@ -1,0 +1,18 @@
+/**********************Tag Selectors**********************/
+h1 {
+  color: red;
+  font-size: 50px;
+}
+
+img:hover {
+  background-color: gold;
+}
+
+/**********************Class Selectors********************/
+.bacon {
+  background-color: blue;
+}
+
+/* #heading{
+  color: blue;
+} */
