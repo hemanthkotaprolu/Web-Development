@@ -39,17 +39,29 @@ app.post('/', function(req, res) {
         auth: "kotaproluhemanth:ac57010615f181e34bd22baa2b221dc7-us8"
     };
     
+    
     const mailchimpRequest = https.request(url, options, function(response) {
+        
+        if(response.statusCode === 200) {
+            res.sendFile(__dirname + "/success.html");
+        } else {
+            res.sendFile(__dirname + "/failure.html");
+        }
+        
         response.on("data", function(data) {
-            console.log(JSON.parse(data));
-        })
-    })
+            // console.log(JSON.parse(data));
+        });
+    });
     
     mailchimpRequest.write(jsonData);
     mailchimpRequest.end();
 });
 
-app.listen(port, function() {
+app.post("/failure", function(req,res) {
+    res.redirect('/');
+})
+
+app.listen(process.env.PORT || port, function() {
     console.log('Server started running on: ' + port);
 });
 
